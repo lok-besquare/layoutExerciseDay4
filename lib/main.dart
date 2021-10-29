@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return const MaterialApp(
       title: 'Layout Exercise',
       home: LayoutPage(),
@@ -29,14 +28,14 @@ class LayoutPage extends StatefulWidget {
 }
 
 class _LayoutPageState extends State<LayoutPage> {
-  List _DataList = [];
+  List _datalist = [];
   bool isEmpty = false;
   // Fetch content from the json file
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/layout.json');
     final data = await json.decode(response);
     setState(() {
-      _DataList = data["items"];
+      _datalist = data["items"];
     });
   }
 
@@ -62,10 +61,10 @@ class _LayoutPageState extends State<LayoutPage> {
             ),
 
             // Display the data loaded from layout.json
-            _DataList.isNotEmpty
+            _datalist.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
-                      itemCount: _DataList.length,
+                      itemCount: _datalist.length,
                       itemBuilder: (context, index) {
                         return Card(
                           child: Padding(
@@ -83,12 +82,12 @@ class _LayoutPageState extends State<LayoutPage> {
                                       radius: 30,
                                       backgroundColor: Colors.transparent,
                                       backgroundImage:
-                                          // (_DataList[index]["avatar"]
+                                          // (_datalist[index]["avatar"]
                                           //         .isNotEmpty)
                                           //     ? NetworkImage("avatar.jpg"):
-                                          NetworkImage((_DataList[index]
+                                          NetworkImage((_datalist[index]
                                                   ["avatar"] ??
-                                              "assets/avatar.jpg")),
+                                              "https://image.shutterstock.com/image-illustration/blank-man-profile-head-icon-260nw-1902600802.jpg")),
                                     ),
                                   ],
                                 ),
@@ -100,9 +99,9 @@ class _LayoutPageState extends State<LayoutPage> {
                                       Container(
                                         margin: EdgeInsets.only(bottom: 5),
                                         child: Text(
-                                          _DataList[index]["first_name"] +
+                                          _datalist[index]["first_name"] +
                                               ' ' +
-                                              _DataList[index]["last_name"],
+                                              _datalist[index]["last_name"],
                                           style: new TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15),
@@ -110,13 +109,13 @@ class _LayoutPageState extends State<LayoutPage> {
                                       ),
                                       Container(
                                         child: Text(
-                                          _DataList[index]["username"],
+                                          _datalist[index]["username"],
                                           style: new TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
                                       Text("Status: " +
-                                          (_DataList[index]["status"] ??
+                                          (_datalist[index]["status"] ??
                                               "...")),
                                     ],
                                   ),
@@ -128,7 +127,7 @@ class _LayoutPageState extends State<LayoutPage> {
                                     Container(
                                         margin:
                                             const EdgeInsets.only(bottom: 10),
-                                        child: Text(_DataList[index]
+                                        child: Text(_datalist[index]
                                             ["last_seen_time"])),
                                     Container(
                                       width: 40,
@@ -145,7 +144,7 @@ class _LayoutPageState extends State<LayoutPage> {
                                             CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
-                                              "${(_DataList[index]["messages"] ?? 0)}")
+                                              "${(_datalist[index]["messages"] ?? 0)}")
                                         ],
                                       ),
                                     ),
@@ -171,42 +170,42 @@ class _LayoutPageState extends State<LayoutPage> {
 //                               radius: 30,
 //                               backgroundColor: Colors.transparent,
 //                               backgroundImage:
-//                                   // (_DataList[index]["avatar"]
+//                                   // (_datalist[index]["avatar"]
 //                                   //         .isNotEmpty)
 //                                   //     ? NetworkImage("avatar.jpg"):
-//                                   NetworkImage((_DataList[index]["avatar"] ??
+//                                   NetworkImage((_datalist[index]["avatar"] ??
 //                                       "assets/avatar.jpg")),
 //                             ),
 
 //                             title: Column(
 //                                 crossAxisAlignment: CrossAxisAlignment.start,
 //                                 children: <Widget>[
-//                                   Text(_DataList[index]["first_name"] +
+//                                   Text(_datalist[index]["first_name"] +
 //                                       ' ' +
-//                                       _DataList[index]["last_name"]),
+//                                       _datalist[index]["last_name"]),
 //                                   Text(
-//                                     _DataList[index]["username"],
+//                                     _datalist[index]["username"],
 //                                     style: new TextStyle(
 //                                         fontWeight: FontWeight.bold),
 //                                   ),
 //                                   Text("Status: " +
-//                                       (_DataList[index]["status"] ?? "...")),
+//                                       (_datalist[index]["status"] ?? "...")),
 //                                 ]),
 //                             // subtitle: Column(
 //                             //   children: <Widget>[
 //                             //     Text(
-//                             //       _DataList[index]["username"],
+//                             //       _datalist[index]["username"],
 //                             //       style: new TextStyle(
 //                             //           fontWeight: FontWeight.bold),
 //                             //     ),
-//                             //     Text("Status: " + _DataList[index]["status"]),
+//                             //     Text("Status: " + _datalist[index]["status"]),
 //                             //   ],
 //                             // ),
 
 //                             trailing: Column(
 //                               children: [
-//                                 Text(_DataList[index]["last_seen_time"]),
-//                                 Text("${(_DataList[index]["messages"] ?? 0)}")
+//                                 Text(_datalist[index]["last_seen_time"]),
+//                                 Text("${(_datalist[index]["messages"] ?? 0)}")
 //                               ],
 //                             ),
 //                           ),
